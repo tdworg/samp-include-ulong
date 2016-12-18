@@ -47,8 +47,8 @@ freely, subject to the following restrictions:
 #define _TDW_ULLIB__ULONG
 
 const
-	ulong:ULONG_MAX = 0xffffffff,
-	ulong:ULONG_MIN = 0;
+	ulong:ULONG_MAX = ulong:0xffffffff,
+	ulong:ULONG_MIN = ulong:0;
 
 // Multiplication
 stock
