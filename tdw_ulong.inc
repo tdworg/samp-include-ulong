@@ -9,6 +9,9 @@ In other words, it's 'unsigned long int' in PAWN.
 To initilize the unsigned long type, you should use the special tag 'ulong:'.
 It is necessary to determine that a variable contains an unsigned number.
 
+The Limit of unsigned long int is 2^32-1 or 4294967295.
+The Limit of int(cellmax) is 2^31-1 or 2147483647.
+
 Example:
 new ulong:var;
 
