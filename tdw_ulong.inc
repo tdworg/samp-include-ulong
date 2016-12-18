@@ -57,6 +57,26 @@ stock
 	#emit retn
 	return 0;
 }
+stock
+	ulong:operator*(ulong:multiplicands, _:multiplier)
+{
+	// multiplicands * multiplier = product
+	#emit load.s.pri multiplicands
+	#emit load.s.alt multiplier
+	#emit umul
+	#emit retn
+	return 0;
+}
+stock
+	ulong:operator*(_:multiplicands, ulong:multiplier)
+{
+	// multiplicands * multiplier = product
+	#emit load.s.pri multiplicands
+	#emit load.s.alt multiplier
+	#emit umul
+	#emit retn
+	return 0;
+}
 
 // Division
 stock
@@ -69,10 +89,48 @@ stock
 	#emit retn
 	return 0;
 }
+stock
+	ulong:operator/(ulong:dividend, _:divisor)
+{
+	// dividend / divisor = quotient
+	#emit load.s.pri dividend
+	#emit load.s.alt divisor
+	#emit udiv
+	#emit retn
+	return 0;
+}
+stock
+	ulong:operator/(_:dividend, ulong:divisor)
+{
+	// dividend / divisor = quotient
+	#emit load.s.pri dividend
+	#emit load.s.alt divisor
+	#emit udiv
+	#emit retn
+	return 0;
+}
 
 // Mod
 stock
 	ulong:operator%(ulong:value, ulong:mod)
+{
+	#emit load.s.pri value
+	#emit load.s.alt mod
+	#emit udiv
+	#emit move.alt
+	#emit retn
+}
+stock
+	ulong:operator%(ulong:value, _:mod)
+{
+	#emit load.s.pri value
+	#emit load.s.alt mod
+	#emit udiv
+	#emit move.alt
+	#emit retn
+}
+stock
+	ulong:operator%(_:value, ulong:mod)
 {
 	#emit load.s.pri value
 	#emit load.s.alt mod
