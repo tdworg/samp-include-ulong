@@ -13,7 +13,7 @@ Example:
 new ulong:var;
 
 | Version:
-1.0.1
+1.0.2
 
 | License:
 Copyright (c) 2016 Double V
@@ -59,7 +59,7 @@ stock
 	#emit load.s.alt multiplier
 	#emit umul
 	#emit retn
-	return 0;
+	return ulong:0;
 }
 stock
 	ulong:operator*(ulong:multiplicands, _:multiplier)
@@ -69,7 +69,7 @@ stock
 	#emit load.s.alt multiplier
 	#emit umul
 	#emit retn
-	return 0;
+	return ulong:0;
 }
 stock
 	ulong:operator*(_:multiplicands, ulong:multiplier)
@@ -79,7 +79,7 @@ stock
 	#emit load.s.alt multiplier
 	#emit umul
 	#emit retn
-	return 0;
+	return ulong:0;
 }
 
 // Division
@@ -91,7 +91,7 @@ stock
 	#emit load.s.alt divisor
 	#emit udiv
 	#emit retn
-	return 0;
+	return ulong:0;
 }
 stock
 	ulong:operator/(ulong:dividend, _:divisor)
@@ -101,7 +101,7 @@ stock
 	#emit load.s.alt divisor
 	#emit udiv
 	#emit retn
-	return 0;
+	return ulong:0;
 }
 stock
 	ulong:operator/(_:dividend, ulong:divisor)
@@ -111,7 +111,7 @@ stock
 	#emit load.s.alt divisor
 	#emit udiv
 	#emit retn
-	return 0;
+	return ulong:0;
 }
 
 // Mod
@@ -121,9 +121,9 @@ stock
 	#emit load.s.pri value
 	#emit load.s.alt mod
 	#emit udiv
-	#emit move.alt
+	#emit move.pri
 	#emit retn
-	return 0;
+	return ulong:0;
 }
 stock
 	ulong:operator%(ulong:value, _:mod)
@@ -131,9 +131,9 @@ stock
 	#emit load.s.pri value
 	#emit load.s.alt mod
 	#emit udiv
-	#emit move.alt
+	#emit move.pri
 	#emit retn
-	return 0;
+	return ulong:0;
 }
 stock
 	ulong:operator%(_:value, ulong:mod)
@@ -141,7 +141,134 @@ stock
 	#emit load.s.pri value
 	#emit load.s.alt mod
 	#emit udiv
-	#emit move.alt
+	#emit move.pri
 	#emit retn
-	return 0;
+	return ulong:0;
 }
+
+stock
+	bool:operator>(ulong:left, ulong:right)
+{
+	#emit load.s.pri left
+	#emit load.s.alt right
+	#emit grtr
+	#emit retn
+	return bool:0;
+}
+stock
+	bool:operator>(ulong:left, _:right)
+{
+	#emit load.s.pri left
+	#emit load.s.alt right
+	#emit grtr
+	#emit retn
+	return bool:0;
+}
+stock
+	bool:operator>(_:left, ulong:right)
+{
+	#emit load.s.pri left
+	#emit load.s.alt right
+	#emit grtr
+	#emit retn
+	return bool:0;
+}
+
+stock
+	bool:operator<(ulong:left, ulong:right)
+{
+	#emit load.s.pri left
+	#emit load.s.alt right
+	#emit less
+	#emit retn
+	return bool:0;
+}
+stock
+	bool:operator<(ulong:left, _:right)
+{
+	#emit load.s.pri left
+	#emit load.s.alt right
+	#emit less
+	#emit retn
+	return bool:0;
+}
+stock
+	bool:operator<(_:left, ulong:right)
+{
+	#emit load.s.pri left
+	#emit load.s.alt right
+	#emit less
+	#emit retn
+	return bool:0;
+}
+
+stock
+	bool:operator>=(ulong:left, ulong:right)
+{
+	#emit load.s.pri left
+	#emit load.s.alt right
+	#emit geq
+	#emit retn
+	return bool:0;
+}
+stock
+	bool:operator>=(ulong:left, _:right)
+{
+	#emit load.s.pri left
+	#emit load.s.alt right
+	#emit geq
+	#emit retn
+	return bool:0;
+}
+stock
+	bool:operator>=(_:left, ulong:right)
+{
+	#emit load.s.pri left
+	#emit load.s.alt right
+	#emit geq
+	#emit retn
+	return bool:0;
+}
+
+stock
+	bool:operator<=(ulong:left, ulong:right)
+{
+	#emit load.s.pri left
+	#emit load.s.alt right
+	#emit leq
+	#emit retn
+	return bool:0;
+}
+stock
+	bool:operator<=(ulong:left, _:right)
+{
+	#emit load.s.pri left
+	#emit load.s.alt right
+	#emit leq
+	#emit retn
+	return bool:0;
+}
+stock
+	bool:operator<=(_:left, ulong:right)
+{
+	#emit load.s.pri left
+	#emit load.s.alt right
+	#emit leq
+	#emit retn
+	return bool:0;
+}
+
+stock bool:operator!=(ulong:left, _:right)
+	return bool:(_:left != right);
+stock bool:operator==(ulong:left, _:right)
+	return bool:(_:left == right);
+
+stock ulong:operator=(_:value)
+	return ulong:value;
+
+stock ulong:operator+(ulong:left_value, _:right_value)
+	return ulong:(_:left_value + right_value);
+stock ulong:operator-(ulong:left_value, _:right_value)
+	return ulong:(_:left_value - right_value);
+stock ulong:operator-(_:left_value, ulong:right_value)
+	return ulong:(left_value - _:right_value);
