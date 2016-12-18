@@ -123,6 +123,7 @@ stock
 	#emit udiv
 	#emit move.alt
 	#emit retn
+	return 0;
 }
 stock
 	ulong:operator%(ulong:value, _:mod)
@@ -132,6 +133,7 @@ stock
 	#emit udiv
 	#emit move.alt
 	#emit retn
+	return 0;
 }
 stock
 	ulong:operator%(_:value, ulong:mod)
@@ -141,4 +143,5 @@ stock
 	#emit udiv
 	#emit move.alt
 	#emit retn
+	return 0;
 }
