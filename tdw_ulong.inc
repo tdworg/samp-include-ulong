@@ -275,3 +275,79 @@ stock ulong:operator-(ulong:left_value, _:right_value)
 	return ulong:(_:left_value - right_value);
 stock ulong:operator-(_:left_value, ulong:right_value)
 	return ulong:(left_value - _:right_value);
+
+
+
+stock
+	ulong_string(dest[], ulong:value, bool:is_packed = false,
+		size = sizeof dest)
+{
+	dest[0] = '0';
+	if (is_packed) {
+		if (value) {
+			size *= 4;
+			while (value) {
+				// Obtain the address of the string.
+				#emit addr.alt dest
+				// Subtract one from the variable.
+				#emit load.s.pri size
+				#emit dec.pri
+				#emit stor.s.pri size
+				// Get the address of the part in the array.
+				#emit add
+				#emit align.pri 1
+				// Push the value of PRI to the stack
+				#emit push.pri
+				// Get the ASCII-code.
+				#emit load.s.pri value
+				#emit const.alt 10
+				#emit udiv // pri = quotient; alt = mod
+				#emit stor.s.pri value
+				// value = '0' + (value mod 10);
+				#emit const.pri 0x30 // '0'
+				#emit add
+				// Pop the last pushed value into PRI
+				#emit pop.alt
+				// Store the value.
+				#emit strb.i 1
+			}
+			#emit retn
+		}
+	} else {
+		if (value) {
+			--size;
+			while (value) {
+				// Obtain the address of the string.
+				#emit addr.alt dest
+				// Subtract one from the variable.
+				#emit load.s.pri size
+				#emit dec.pri
+				#emit stor.s.pri size
+				// Get the address of the part in the array.
+				#emit idxaddr
+				// Push the value of PRI to the stack
+				#emit push.pri
+				// Get the ASCII-code.
+				#emit load.s.pri value
+				#emit const.alt 10
+				#emit udiv // pri = quotient; alt = mod
+				#emit stor.s.pri value
+				// value = '0' + (value mod 10);
+				#emit const.pri 0x30 // '0'
+				#emit add
+				// Pop the last pushed value into PRI
+				#emit pop.alt
+				// Store the value.
+				#emit stor.i
+			}
+			// Move all values.
+			#emit addr.alt dest
+			#emit load.s.pri size
+			#emit idxaddr
+			#emit load.s.alt dest
+			#emit movs 44
+			#emit retn
+		}
+	}
+	return 0;
+}
