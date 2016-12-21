@@ -16,12 +16,16 @@ A library for using the unsigned values in your code. It works on #emit, because
 
 main()
 {
-	new ulong:n = 0xfffffff;
-	n /= 8;
-	printf("%d", n);
+	new buffer[11];
 
-	new n = 0xfffffff;
-	n /= 8;
-	printf("%d", n);
+	new ulong:unsigned_value = 0xfffffff;
+	unsigned_value /= 8;
+	ulong_string(buffer, unsigned_value);
+	printf("%s", buffer);
+
+
+	new signed_value = 0xfffffff;
+	signed_value /= 8;
+	printf("%d", buffer);
 }
 ```
