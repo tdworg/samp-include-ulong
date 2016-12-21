@@ -278,11 +278,24 @@ stock
 	#emit retn
 	return ulong:0;
 }
-stock ulong:operator-(ulong:left_value, _:right_value)
-	return ulong:(_:left_value - right_value);
-stock ulong:operator-(_:left_value, ulong:right_value)
-	return ulong:(left_value - _:right_value);
-
+stock
+	ulong:operator-(ulong:left_value, _:right_value)
+{
+	#emit load.s.pri left_value
+	#emit load.s.alt right_value
+	#emit sub
+	#emit retn
+	return ulong:0;
+}
+stock
+	ulong:operator-(_:left_value, ulong:right_value)
+{
+	#emit load.s.pri left_value
+	#emit load.s.alt right_value
+	#emit sub
+	#emit retn
+	return ulong:0;
+}
 
 
 stock
