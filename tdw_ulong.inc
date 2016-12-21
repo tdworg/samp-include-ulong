@@ -16,7 +16,7 @@ Example:
 new ulong:var;
 
 | Version:
-1.0.3
+1.0.4
 
 | License:
 Copyright (c) 2016 Double V
