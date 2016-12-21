@@ -18,14 +18,14 @@ main()
 {
 	new buffer[11];
 
-	new ulong:unsigned_value = 0xfffffff;
-	unsigned_value /= 8;
+	new ulong:unsigned_value = cellmax;
+	unsigned_value *= 2;
 	ulong_string(buffer, unsigned_value);
 	printf("%s", buffer);
 
 
-	new signed_value = 0xfffffff;
-	signed_value /= 8;
-	printf("%d", buffer);
+	new signed_value = cellmax;
+	signed_value *= 2;
+	printf("%d", signed_value);
 }
 ```
