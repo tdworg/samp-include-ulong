@@ -310,6 +310,7 @@ stock
 			end = ulong_getDigitCount(value),
 			mod;
 		while (value) {
+			// dest[end] = '0' + (value % 10)
 			#emit load.s.pri value
 			#emit const.alt 10
 			#emit udiv
